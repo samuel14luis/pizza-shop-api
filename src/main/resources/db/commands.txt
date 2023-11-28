@@ -1,0 +1,19 @@
+ssh root@192.168.1.10
+
+sudo ss -tuln | grep 3306
+sudo ufw status
+sudo ufw allow 3306
+
+mysql -u root
+
+CREATE DATABASE htl_pizza_bd;
+SHOW DATABASES;
+use htl_pizza_bd;
+
+
+CREATE USER 'sam'@'%' IDENTIFIED BY 'gptrevolut10n';
+
+GRANT ALL PRIVILEGES ON htl_pizza_bd.* TO 'sam'@'%';
+
+FLUSH PRIVILEGES;
+EXIT;
