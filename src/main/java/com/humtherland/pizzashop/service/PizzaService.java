@@ -21,6 +21,22 @@ public class PizzaService {
         return this.repository.findAll();
     }
 
+    public List<PizzaEntity> getAvailable() {
+        return this.repository.findAllByAvailableTrueOrderByPrice();
+    }
+
+    public PizzaEntity getByName(String name) {
+        return this.repository.findAllByAvailableTrueAndNameIgnoreCase(name);
+    }
+
+    public List<PizzaEntity> getWith(String ingredient) {
+        return this.repository.findAllByAvailableTrueAndDescriptionContainingIgnoreCase(ingredient);
+    }
+
+    public List<PizzaEntity> getWithout(String ingredient) {
+        return this.repository.findAllByAvailableTrueAndDescriptionNotContainingIgnoreCase(ingredient);
+    }
+
     public PizzaEntity getById(int id) {
         //return this.jdbcTemplate.queryForObject("SELECT * FROM pizza WHERE id_pizza = ?;", new Object[]{id}, new BeanPropertyRowMapper<>(PizzaEntity.class));
         return this.repository.findById(id).orElse(null);
